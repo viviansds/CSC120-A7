@@ -1,11 +1,9 @@
-import javax.management.RuntimeErrorException;
-
 public class Building {
 
     protected String name;
     protected String address;
     protected int nFloors;
-    private int activeFloor = -1; // Default value indicating we are not inside this building
+    protected int activeFloor = -1; // Default value indicating we are not inside this building
 
     /* Default constructor */
     public Building() {
