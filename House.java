@@ -2,7 +2,7 @@
  * House class 
  * Assignment 6: Use What Your Parent (Class) Gave You
  * @author Vivian Wei
- * @version 30 October 2022
+ * @version 4 November 2022
  */
 import java.util.ArrayList;
 
@@ -13,7 +13,13 @@ public class House extends Building {
     private boolean hasDiningRoom;//Whether this house has a dining room
     private boolean hasElevator;//Whether this house has an elevator
 
-    /* Constructor
+     /* Overloaded constructor with name, address, nFloors only */
+    public House(String name,String address,int nFloors) {
+      super(name, address, nFloors);//Inherited attributes from parent class
+      this.residents = new ArrayList<String>();//initialize an empty arraylist
+    }
+
+    /* Full Constructor
      * @param name
      * @param address
      * @param nFloors
@@ -48,7 +54,15 @@ public class House extends Building {
       this.residents.add(name);
       System.out.println(name+" has moved in");
     }
-
+    /* Overload moveIn method with a move in date
+     * @param name
+     * @param date
+     */
+    public void moveIn(String name, String date, int roomNum){
+      this.residents.add(name);
+      System.out.println(name+" has moved in on"+date+ "living in room"+ roomNum);
+    }
+    
     /* Remove resident's name from the house
      * @param name 
      * @return the name of the person who moved out  
@@ -56,6 +70,16 @@ public class House extends Building {
     public String moveOut(String name){
       this.residents.remove(name);
       System.out.println(name+" has moved out");
+      return name;
+    } 
+
+    /* Overload moveOut method with a move out date
+     * @param name
+     * @param date
+     */
+    public String moveOut(String name, String date){
+      this.residents.remove(name);
+      System.out.println(name+" has moved out on"+date);
       return name;
     } 
     
@@ -94,6 +118,7 @@ public class House extends Building {
       }
     }
 
+
     /* Main method for testing */
     public static void main(String[] args) {
       House chapin = new House("Chapin House","3 Chapin Way",4,true,false);
@@ -114,5 +139,4 @@ public class House extends Building {
       chapin.enter();
       chapin.goToFloor(2);
     }
-
 }

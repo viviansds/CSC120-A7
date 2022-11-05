@@ -2,7 +2,7 @@
  * Library class 
  * Assignment 6: Use What Your Parent (Class) Gave You
  * @author Vivian Wei
- * @version 30 October 2022
+ * @version 4 November 2022
  */
 import java.util.Hashtable;
 import java.util.Set; //import Set to iterate with for loops
@@ -11,8 +11,14 @@ public class Library extends Building{
     /* Subclass attributes */
     private Hashtable<String, Boolean> collection;//An hashtable containing each book's title and author and its availability to check out
     private boolean hasElevator;//Whether this library has an elevator
+    
+    /* Overloaded constructor with name, address, nFloors only */
+    public Library(String name, String address,int nFloors){
+      super(name, address, nFloors);//Inherited attributes from parent class
+      this.collection = new Hashtable<String, Boolean>();//initialize an empty hashtable
+    }
 
-    /* Constructor
+    /* Full Constructor
      * @param name
      * @param address
      * @param nFloors
@@ -47,6 +53,15 @@ public class Library extends Building{
     public void checkOut(String title){
       this.collection.replace(title,false);//replace the bolean to false for the specified key
       System.out.println("Checking out "+title+"...");
+    }
+
+    /* Overload checkOut method with a specified days duration
+     * @param name
+     * @param days
+     */
+    public void checkOut(String title, int days){
+      this.collection.replace(title,false);//replace the bolean to false for the specified key
+      System.out.println("Checking out "+title+"for"+days+"days...");
     }
 
     /* Return the book to the library's collection

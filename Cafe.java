@@ -2,7 +2,7 @@
  * Cafe class 
  * Assignment 6: Use What Your Parent (Class) Gave You
  * @author Vivian Wei
- * @version 30 October 2022
+ * @version 4 November 2022
  */
 public class Cafe extends Building{
 
@@ -20,7 +20,6 @@ public class Cafe extends Building{
      * @paramn SugarPackets
      * @param nCreams
      * @param nCups
-     * @param
      */
     public Cafe(String name,String address,int nFloors,int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups) {
         super(name, address, nFloors);//Inherited attributes from parent class
@@ -61,6 +60,70 @@ public class Cafe extends Building{
                                 nCups+"cups");
         }
     }
+
+    /* Overload sellCoffee method with a constumer tip, then prints out the subtotal and total price of the coffee
+     * @param size: the number of coffee ounces requested
+     * @param sugar: the numer of sugar packets requested
+     * @param cream: the number of cream splashes
+     * @param tip: customer tip
+     */
+    public void sellCoffee(int size, int sugar, int cream, double tip){
+        // calculate price
+        double price = 0.5 * nCoffeeOunces+0.3*sugar+0.3*cream+0.2;
+        double receipt = price+tip;
+        // first check inventory,restock if needed, and sell coffee
+        if (nCoffeeOunces<=size || nSugarPackets<=sugar || nCreams<=cream ||nCups<=1){//true when at least one condiion is met
+            System.out.println("Low in stock, restocking");
+            restock(100, 100,100,10);//call the restock method
+            this.nCoffeeOunces -= size;
+            this.nSugarPackets -= sugar;
+            this.nCreams -= cream;
+            this.nCups -= 1;//always decrease number of cups by 1 when coffee sold
+            System.out.println("Coffee Sold! Please Enjoy...");
+            System.out.println("Subtotal: "+ price+"Total: "+receipt);
+            System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
+                                nSugarPackets+" sugar packets,"+
+                                nCreams +" number of creams, and "+
+                                nCups+"cups");
+        }else{//when all conditions are not met
+            this.nCoffeeOunces -= size;
+            this.nSugarPackets -= sugar;
+            this.nCreams -= cream;
+            this.nCups -= 1;
+            System.out.println("Coffee Sold! Please Enjoy...");
+            System.out.println("Subtotal: "+ price+"\nTotal: "+receipt);
+            System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
+                                nSugarPackets+" sugar packets,"+
+                                nCreams +" number of creams, and "+
+                                nCups+"cups");
+        }
+    }
+
+    /*Overload sellCoffee method with only requesting coffee
+     * @param size: the number of coffee ounces requested
+     */
+    public void sellCoffee(int size){
+        // first check inventory,restock if needed, and sell coffee
+       if (nCoffeeOunces<=size||nCups<=1){
+           System.out.println("Low in stock, restocking");
+           restock(100,0,0,10);//call the restock method
+           this.nCoffeeOunces -= size;
+           this.nCups -= 1;//always decrease number of cups by 1 when coffee sold
+           System.out.println("Coffee Sold! Please Enjoy...");
+           System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
+                               nSugarPackets+" sugar packets,"+
+                               nCreams +" number of creams, and "+
+                               nCups+"cups");
+       }else{
+           this.nCoffeeOunces -= size;
+           this.nCups -= 1;
+           System.out.println("Coffee Sold! Please Enjoy...");
+           System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
+                               nSugarPackets+" sugar packets,"+
+                               nCreams +" number of creams, and "+
+                               nCups+"cups");
+       }
+   }
     
     /* Restocking the amount of Coffee, Sugar, and Creams
      * @param nCoffeeOunces
@@ -88,6 +151,8 @@ public class Cafe extends Building{
         myCafe.sellCoffee(101,2,3);
         myCafe.sellCoffee(20,2,3);
         myCafe.showOptions();
+        myCafe.sellCoffee(20,2,3,0.5);
+        myCafe.sellCoffee(10);
     }
     
 }

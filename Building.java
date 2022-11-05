@@ -9,7 +9,7 @@ public class Building {
     public Building() {
         this("<Name Unknown>", "<Address Unknown>", 1);
     }
-
+    
     /* Overloaded constructor with address only */
     public Building(String address) {
         this(); // Call default constructor
