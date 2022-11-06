@@ -46,6 +46,9 @@ public class Building {
 
     /* Navigation methods */
     public Building enter() {
+        if (activeFloor != -1) {
+            throw new RuntimeException("You are already inside this Building.");
+        }
         this.activeFloor = 1;
         System.out.println("You are now inside " + this.name + " on the ground floor.");
         return this; // Return a pointer to the current building
@@ -59,6 +62,7 @@ public class Building {
             throw new RuntimeException("You have fallen out a window from floor #" +this.activeFloor + "!");
         }
         System.out.println("You have left " + this.name + ".");
+        this.activeFloor = -1; // We're leaving the building, so we no longer have a valid active floor
         return null; // We're outside now, so the building is null
     }
 
