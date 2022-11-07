@@ -1,4 +1,10 @@
 Use this file to record your reflection on this assignment.
 
 - Which methods did you decide to `overload`, and why?
+For the House class, I overloaded the constructor so that it can build a house with just name, address and nFloors. It doesn't need to take in parameters for DiningRoom or Elevator because some houses on campus don't have Dining room nor elevator which saves us some typing to create them on the Campus map. Furthermore, I also overloaded both the moveIn() and moveOut() methods with an additional argument for date. This helps us learn about when did the resident move in or move out from the house. 
+
+For the Library class, I overloaded the constructor with just  name, address, nFloors, similar to the previous house class example. Considering some library may not have an elevator, it doesn't have to include a boolean to indicate its status. I also overloaded two different checkOut() method. The first one is adding a second book title to the argument. This is a convinient method for someone want to check out two books at the time and don't want to write the default checkOut() method twice. The second one is adding a specified time frame for checking out the book. So we theoretically impose a due date for returning the book on time.
+
+For the Cafe class, I overloaded the sellCoffee() method twice. For the first one, I added the argument tip which allow people to add customizable tip for the cafe workers. Since students workers here in Smith get paid for minimum wages, I wanted to make tip as a way to improve the wage condition in my ideal campus. This method calculates the subtotal for just the coffee itself and adds tip to the total. For the second method, I chose to only have size (coffee Ounces) as the argument so that the coffee is purely americano. This help diversify the coffee options in the Cafe. Finally, I overloaded the restock method because I wanted to just restock nCoffeeOunces in my precious sellCoffee method since it is more likely to run out of coffee compared to sugar and cream.
+
 - What worked, what didn't, what advice would you give someone taking this course in the future?

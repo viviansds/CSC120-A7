@@ -102,13 +102,15 @@ public class House extends Building {
       System.out.println(" + hasDiningRoom()\n + nResidents()\n + moveIn()\n + moveOut()\n + isResident()");
     }
     
-    /*override parent goToFloor() */
+    /*override parent goToFloor()
+     * @param floorNum: the floor you wish to travel to
+     */
     public void goToFloor(int floorNum) {
-      if(hasElevator){
-        if (this.activeFloor == -1) {
+      if(hasElevator){//Allows movement between non-adjacent floors only if an elevator is present
+        if (this.activeFloor == -1) {//if enter() is not called before goToFloor()
           throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
         }
-      if (floorNum < 1 || floorNum > this.nFloors) {
+        if (floorNum < 1 || floorNum > this.nFloors) {//if the argument is out of bounds
           throw new RuntimeException("Invalid floor number. Valid range for this Building is 1-" + this.nFloors +".");
         }
       System.out.println("You are now on floor #" + floorNum + " of " + this.name);
@@ -136,6 +138,8 @@ public class House extends Building {
       cutter.showOptions();
       cutter.enter();
       cutter.goToFloor(4);
+      cutter.goToFloor(1);
+      cutter.exit();
       chapin.enter();
       chapin.goToFloor(2);
     }

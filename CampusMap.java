@@ -45,17 +45,19 @@ public class CampusMap {
         myMap.addBuilding(new Building("Ford Hall", "100 Green Street Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Bass Hall", "4 Tyler Court Northampton, MA 01063", 4));
         myMap.addBuilding(new Building("Campus Center","1 Chapin Way Northampton, MA 01063"));
+        myMap.addBuilding(new Cafe("Campus Center Café","1 Chapin Way Northampton, MA 01063",1,100,100,100,100));
         myMap.addBuilding(new Building("Wright Hall","5 Chapin Way Northampton, MA 01063"));
         myMap.addBuilding(new Building("John M. Greene Hall","60 Elm St, Northampton, MA 01060"));
         myMap.addBuilding(new Building("Sage Hall","144 Green St, Northampton, MA 01063"));
         myMap.addBuilding(new Building("Seelye Hall","1 Chapin Way Northampton, MA 01063",4));
+        myMap.addBuilding(new Building("83 Green St, Northampton, MA 01063"));
         myMap.addBuilding(new House("Chapin House","3 Chapin Way Northampton, MA 01063",4,true,false));
         myMap.addBuilding(new House("Cutter House","1 Henshaw Ave Northampton, MA 01063",4,true,true));
-        myMap.addBuilding(new House("Ziskind House","1 Henshaw Ave Northampton, MA 01063",4,true,true));
         myMap.addBuilding(new House("Tyler House","151-199 Green St, Northampton, MA 01060",4,true,false));
         myMap.addBuilding(new House("Washburn House"," 1 Mandelle Rd, Northampton, MA 01063",4));
         myMap.addBuilding(new Library("Nielson Library", "7 Nielson Drive Northampton, MA 01063",4, true));
         myMap.addBuilding(new Library("Josten Performing Arts Library", "122 Green St, Northampton, MA 01063",2));
+        myMap.addBuilding(new Building());
         System.out.println(myMap);
     }
     

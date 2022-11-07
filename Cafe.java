@@ -29,7 +29,7 @@ public class Cafe extends Building{
         this.nCups =nCups;   
     }
 
-    /* Decrease the remaining inventory when the Cafe sells a cup of coffee
+    /* Default sellCoffee: Decrease the remaining inventory when the Cafe sells a cup of coffee
      * @param size: the number of coffee ounces requested
      * @param sugar: the numer of sugar packets requested
      * @param cream: the number of cream splashes
@@ -106,10 +106,10 @@ public class Cafe extends Building{
         // first check inventory,restock if needed, and sell coffee
        if (nCoffeeOunces<=size||nCups<=1){
            System.out.println("Low in stock, restocking");
-           restock(100,0,0,10);//call the restock method
+           restock(100);//call the restock method
            this.nCoffeeOunces -= size;
            this.nCups -= 1;//always decrease number of cups by 1 when coffee sold
-           System.out.println("Coffee Sold! Please Enjoy...");
+           System.out.println("Americano Coffee Sold! Please Enjoy...");
            System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
                                nSugarPackets+" sugar packets,"+
                                nCreams +" number of creams, and "+
@@ -117,7 +117,7 @@ public class Cafe extends Building{
        }else{
            this.nCoffeeOunces -= size;
            this.nCups -= 1;
-           System.out.println("Coffee Sold! Please Enjoy...");
+           System.out.println("Americano Coffee Sold! Please Enjoy...");
            System.out.println("remaining inventory: "+ nCoffeeOunces+" ounces of cofee,"+
                                nSugarPackets+" sugar packets,"+
                                nCreams +" number of creams, and "+
@@ -125,7 +125,7 @@ public class Cafe extends Building{
        }
    }
     
-    /* Restocking the amount of Coffee, Sugar, and Creams
+    /* Default restock(): Restocking the amount of Coffee, Sugar, and Creams
      * @param nCoffeeOunces
      * @param nSugarPackets
      * @param nCreams
@@ -137,11 +137,27 @@ public class Cafe extends Building{
         this.nCreams += nCreams;
         this.nCups += nCups;
     }
+
+    /*Overloaded restock method to only restock coffee ounces
+     * @param nCoffeeOunces
+     */
+    private void restock(int nCoffeeOunces){
+        this.nCoffeeOunces += nCoffeeOunces;
+    }
+
+    /*override parent goToFloor() */
+    public void goToFloor(int floorNum) {
+        if (this.activeFloor == -1) {
+            throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
+        }else{
+            throw new RuntimeException("Employees only, cannot go to non-adjacent floor.");
+        }
+    }
     /*override parent showOptions() */
     public void showOptions() {
-        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()");
+        System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + sellCoffee()\n + goToFloor()");
       }
-    //   cafe does not have goto floor since it is only a 1-story building?
+    
     /* Main method for testing */
     public static void main(String[] args) {
         Cafe myCafe = new Cafe("Campus Cafe", "1 Chapin Way",1,
@@ -153,6 +169,8 @@ public class Cafe extends Building{
         myCafe.showOptions();
         myCafe.sellCoffee(20,2,3,0.5);
         myCafe.sellCoffee(10);
+        myCafe.enter();
+        myCafe.goToFloor(1);
     }
     
 }

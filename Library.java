@@ -47,12 +47,18 @@ public class Library extends Building{
       return title;
     } 
 
-    /* Check out the book from the library's collection
+    /* Default checkOut(): Check out the book from the library's collection
      * @param title
      */
     public void checkOut(String title){
       this.collection.replace(title,false);//replace the bolean to false for the specified key
       System.out.println("Checking out "+title+"...");
+    }
+    /* Overloaded checkOut()method to check out two books at the same time */
+    public void checkOut(String title1, String title2){
+      this.collection.replace(title1,false);//replace the bolean to false for the specified key
+      this.collection.replace(title2,false);
+      System.out.println("Checking out "+title1+" and "+title2+"...");
     }
 
     /* Overload checkOut method with a specified days duration
@@ -155,6 +161,7 @@ public class Library extends Building{
       myLibrary.checkOut("The Lorax by Dr. Seuss");
       myLibrary.isAvailable("The Lorax by Dr. Seuss");
       myLibrary.returnbook("The Lorax by Dr. Seuss");
+      myLibrary.checkOut("Little Prince by Antoine de Saint-Exupéry","Harry Potter by J.K.Rowling");
       myLibrary.removeTitle("The Lorax by Dr. Seuss");
       myLibrary.printCollection();
       myLibrary.isAvailable("Harry Potter by J.K.Rowling");
@@ -163,5 +170,8 @@ public class Library extends Building{
       myLibrary.showOptions();
       myLibrary.enter();
       myLibrary.goToFloor(3);
+      Library myArtLibrary = new Library("Josten Performing Arts Library", "122 Green St, Northampton, MA 01063",2);
+      myArtLibrary.enter();
+      myArtLibrary.goToFloor(2);
     }
   }
