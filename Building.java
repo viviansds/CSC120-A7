@@ -1,3 +1,9 @@
+/*
+ * Building class 
+ * Assignment 6: Use What Your Parent (Class) Gave You
+ * @author Vivian Wei
+ * @version 4 November 2022
+ */
 public class Building {
 
     protected String name;
@@ -31,29 +37,37 @@ public class Building {
         this.nFloors = nFloors;
     }
 
-    /* Accessors */
+    /* Accessors 
+     * @return the name of the building
+     */
     public String getName() {
         return this.name;
     }
 
+    /* Accessors 
+     * @return the address of the building
+     */
     public String getAddress() {
         return this.address;
     }
 
+    /* Accessors 
+     * @return the number of floors of the building
+     */
     public int getFloors() {
         return this.nFloors;
     }
 
     /* Navigation methods */
     public Building enter() {
-        if (activeFloor != -1) {
+        if (activeFloor != -1) {//-1 represents outside of building
             throw new RuntimeException("You are already inside this Building.");
         }
         this.activeFloor = 1;
         System.out.println("You are now inside " + this.name + " on the ground floor.");
         return this; // Return a pointer to the current building
     }
-
+    /* Exit the building only when you are at the ground floor(activeFloor=1) */
     public Building exit() {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before exit().");
@@ -65,7 +79,9 @@ public class Building {
         this.activeFloor = -1; // We're leaving the building, so we no longer have a valid active floor
         return null; // We're outside now, so the building is null
     }
-
+    /* Go to non-adjacent floor
+     * @param floorNum: the floor number you wish to travel to
+    */
     public void goToFloor(int floorNum) {
         if (this.activeFloor == -1) {
             throw new RuntimeException("You are not inside this Building. Must call enter() before navigating between floors.");
@@ -76,19 +92,21 @@ public class Building {
         System.out.println("You are now on floor #" + floorNum + " of " + this.name);
         this.activeFloor = floorNum;
     }
-
+    /* Go up one floor */
     public void goUp() {
         this.goToFloor(this.activeFloor + 1);
     }
 
+    /* Move down one floor */
     public void goDown() {
         this.goToFloor(this.activeFloor - 1);
     }
 
+    /* Display all methods in the class */
     public void showOptions() {
         System.out.println("Available options at " + this.name + ":\n + enter() \n + exit() \n + goUp() \n + goDown()\n + goToFloor(n)");
     }
-
+    /* Override the memory address with toString method */
     public String toString() {
         return this.name + " is a " + this.nFloors + "-story building located at " + this.address + ".";
     }
